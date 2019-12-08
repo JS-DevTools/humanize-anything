@@ -2,7 +2,7 @@
 /* global BigInt */
 "use strict";
 
-const stringify = require("../../lib");
+const { stringify } = require("../../");
 const { expect } = require("chai");
 
 describe("stringify()", () => {

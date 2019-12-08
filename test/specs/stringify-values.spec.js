@@ -1,6 +1,6 @@
 "use strict";
 
-const stringify = require("../../");
+const { stringify } = require("../../");
 const { expect } = require("chai");
 
 describe("stringify.values()", () => {
