@@ -18,7 +18,7 @@ export function stringifyValues(values: unknown[], options: StringifyOptions = {
  * @example
  * ["one", "two", "three", "four"]   =>   "one, two, three, and four"
  */
-export function stringifyList(values: string[], options: StringifyOptions): string {
+export function stringifyList(values: string[], options: StringifyOptions = {}): string {
   let lastValue = "", oxfordComma = "";
 
   if (values.length > 1) {
