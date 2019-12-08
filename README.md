@@ -1,6 +1,17 @@
 CodeEngine stringify helpers
 ======================================
 
+[![Cross-Platform Compatibility](https://engine.codes/img/badges/os-badges.svg)](https://travis-ci.com/CodeEngineOrg/code-engine-stringify)
+[![Build Status](https://api.travis-ci.com/CodeEngineOrg/code-engine-stringify.svg?branch=master)](https://travis-ci.com/CodeEngineOrg/code-engine-stringify)
+
+[![Coverage Status](https://coveralls.io/repos/github/CodeEngineOrg/code-engine-stringify/badge.svg?branch=master)](https://coveralls.io/github/CodeEngineOrg/code-engine-stringify)
+[![Dependencies](https://david-dm.org/CodeEngineOrg/code-engine-stringify.svg)](https://david-dm.org/CodeEngineOrg/code-engine-stringify)
+
+[![npm](https://img.shields.io/npm/v/@code-engine/stringify.svg)](https://www.npmjs.com/package/code-engine-stringify)
+[![License](https://img.shields.io/npm/l/@code-engine/stringify.svg)](LICENSE)
+
+
+
 This is an utility library that's used inside [CodeEngine](https://engine.codes/) to convert values to strings for error messages and console logs.
 
 > **NOTE:** This is an **internal library** that is only intended to be used by CodeEngine. Using it outside of CodeEngine is discouraged.
