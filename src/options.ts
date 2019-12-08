@@ -11,7 +11,7 @@ export interface StringifyOptions {
 
   /**
    * Indicates whether the value string should be capitalized if applicable
-   * (e.g. "Object" instead of "object").
+   * (e.g. "Number" instead of "number").
    *
    * Defaults to `false`.
    */
