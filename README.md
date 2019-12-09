@@ -7,7 +7,7 @@ CodeEngine stringify helpers
 [![Coverage Status](https://coveralls.io/repos/github/CodeEngineOrg/code-engine-stringify/badge.svg?branch=master)](https://coveralls.io/github/CodeEngineOrg/code-engine-stringify)
 [![Dependencies](https://david-dm.org/CodeEngineOrg/code-engine-stringify.svg)](https://david-dm.org/CodeEngineOrg/code-engine-stringify)
 
-[![npm](https://img.shields.io/npm/v/@code-engine/stringify.svg)](https://www.npmjs.com/package/code-engine-stringify)
+[![npm](https://img.shields.io/npm/v/@code-engine/stringify.svg)](https://www.npmjs.com/package/@code-engine/stringify)
 [![License](https://img.shields.io/npm/l/@code-engine/stringify.svg)](LICENSE)
 
 
