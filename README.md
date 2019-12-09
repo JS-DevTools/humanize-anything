@@ -12,7 +12,7 @@ CodeEngine stringify helpers
 
 
 
-This is an utility library that's used inside [CodeEngine](https://engine.codes/) to convert values to strings for error messages and console logs.
+This is a utility library that's used inside [CodeEngine](https://engine.codes/) to convert values to strings for error messages and console logs.
 
 > **NOTE:** This is an **internal library** that is only intended to be used by CodeEngine. Using it outside of CodeEngine is discouraged.
 
