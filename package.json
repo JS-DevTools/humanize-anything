@@ -41,23 +41,22 @@
   },
   "engineStrict": true,
   "devDependencies": {
+    "@jsdevtools/eslint-config-modular": "^8.0.0",
+    "@jsdevtools/tslint-modular": "^2.0.2",
+    "@jsdevtools/version-bump-prompt": "^6.0.2",
     "@types/chai": "^4.2.6",
-    "@types/mocha": "^5.2.7",
-    "@types/node": "^12.12.14",
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^13.9.0",
     "chai": "^4.2.0",
-    "coveralls": "^3.0.9",
     "eslint": "^6.7.2",
-    "eslint-config-modular": "^7.0.0",
-    "mocha": "^6.2.2",
+    "mocha": "^7.1.0",
     "npm-check": "^5.9.0",
-    "nyc": "^14.1.1",
+    "nyc": "^15.0.0",
     "shx": "^0.3.2",
     "source-map-support": "^0.5.16",
-    "tslint": "^5.20.1",
-    "tslint-modular": "^1.4.1",
+    "tslint": "^6.0.0",
     "typescript": "^3.7.3",
-    "typescript-tslint-plugin": "^0.5.5",
-    "version-bump-prompt": "^5.0.6"
+    "typescript-tslint-plugin": "^0.5.5"
   },
   "dependencies": {}
 }
