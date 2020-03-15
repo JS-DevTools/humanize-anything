@@ -9,12 +9,14 @@ CodeEngine stringify helpers
 
 [![npm](https://img.shields.io/npm/v/@code-engine/stringify.svg)](https://www.npmjs.com/package/@code-engine/stringify)
 [![License](https://img.shields.io/npm/l/@code-engine/stringify.svg)](LICENSE)
+[![Buy us a tree](https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-lightgreen)](https://plant.treeware.earth/CodeEngineOrg/code-engine-stringify)
 
 
 
 This is a utility library that's used inside [CodeEngine](https://engine.codes/) to convert values to strings for error messages and console logs.
 
 > **NOTE:** This is an **internal library** that is only intended to be used by CodeEngine. Using it outside of CodeEngine is discouraged.
+
 
 
 Usage
@@ -158,6 +160,8 @@ To build the project locally on your computer:
 License
 --------------------------
 @code-engine/stringify is 100% free and open-source, under the [MIT license](LICENSE). Use it however you want.
+
+This package is [Treeware](http://treeware.earth). If you use it in production, then we ask that you [**buy the world a tree**](https://plant.treeware.earth/CodeEngineOrg/code-engine-stringify) to thank us for our work. By contributing to the Treeware forest you’ll be creating employment for local families and restoring wildlife habitats.
 
 
 
