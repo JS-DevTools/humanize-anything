@@ -1,6 +1,6 @@
 {
   "name": "@code-engine/stringify",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Converts values to user-friendly strings for error messages and logs",
   "keywords": [
     "code-engine",
