@@ -1,0 +1,37 @@
+{
+  "name": "humanize-anything",
+  "version": "X.X.X",
+  "description": "Convert any value to a short, human-readable string",
+  "keywords": [
+    "humanize",
+    "humanizer",
+    "stringify",
+    "stringifier",
+    "format",
+    "formatter",
+    "tostring",
+    "printf"
+  ],
+  "author": {
+    "name": "James Messinger",
+    "url": "https://jamesmessinger.com"
+  },
+  "license": "MIT",
+  "homepage": "https://jstools.dev/humanize-anything",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JS-DevTools/humanize-anything.git"
+  },
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "dependencies": {
+    "@jsdevtools/humanize-anything": "X.X.X"
+  }
+}
