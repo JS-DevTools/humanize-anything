@@ -1,18 +1,18 @@
-import { StringifyOptions } from "./options";
-import { stringifyClass, stringifyFunction, stringifyType } from "./stringify-type";
-import { stringifyValue } from "./stringify-value";
-import { stringifyList, stringifyValues } from "./stringify-values";
+import { humanizeClass, humanizeFunction, humanizeType } from "./humanize-type";
+import { humanizeValue } from "./humanize-value";
+import { humanizeList, humanizeValues } from "./humanize-values";
+import { HumanizeOptions } from "./options";
 
 export * from "./options";
 
 /**
- * Converts values to user-friendly strings for error messages and logs
+ * Convert any value to a short, human-readable string
  */
-export interface Stringify {
+export interface Humanize {
   /**
-   * Returns a short, user-friendly string that represents the given value.
+   * Convert any value to a short, human-readable string
    */
-  (value: unknown, options?: StringifyOptions): string;
+  (value: unknown, options?: HumanizeOptions): string;
 
   /**
    * Returns the type name of the given value.
@@ -35,7 +35,7 @@ export interface Stringify {
    * @example
    * ["one", true, 3, { four: 4 }]    =>    '"one", true, 3, and {four}'
    */
-  values(values: unknown[], options?: StringifyOptions): string;
+  values(values: unknown[], options?: HumanizeOptions): string;
 
   /**
    * Returns a comma separated list of strings.
@@ -43,19 +43,24 @@ export interface Stringify {
    * @example
    * ["one", "two", "three", "four"]   =>   "one, two, three, and four"
    */
-  list(values: string[], options?: StringifyOptions): string;
+  list(values: string[], options?: HumanizeOptions): string;
 }
 
 /**
- * Converts values to user-friendly strings for error messages and logs
+ * Convert any value to a short, human-readable string
  */
-export const stringify = stringifyValue as Stringify;
-stringify.type = stringifyType;
-stringify.class = stringifyClass;
-stringify.function = stringifyFunction;
-stringify.values = stringifyValues;
-stringify.list = stringifyList;
+export const humanize = humanizeValue as Humanize;
+humanize.type = humanizeType;
+humanize.class = humanizeClass;
+humanize.function = humanizeFunction;
+humanize.values = humanizeValues;
+humanize.list = humanizeList;
 
-// Export `stringify` as the default export
+// Export `humanize` as the default export
 // tslint:disable: no-default-export
-export default stringify;
+export default humanize;
+
+// CommonJS default export hack
+if (typeof module === "object" && typeof module.exports === "object") {
+  module.exports = Object.assign(module.exports.default, module.exports);  // tslint:disable-line: no-unsafe-any
+}

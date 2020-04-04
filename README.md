@@ -1,150 +1,169 @@
-CodeEngine stringify helpers
+Humanize Anything
 ======================================
+### Convert any value to a short, human-readable string
 
-[![Cross-Platform Compatibility](https://engine.codes/img/badges/os-badges.svg)](https://github.com/CodeEngineOrg/code-engine-stringify/blob/master/.github/workflows/CI-CD.yaml)
-[![Build Status](https://github.com/CodeEngineOrg/code-engine-stringify/workflows/CI-CD/badge.svg)](https://github.com/CodeEngineOrg/code-engine-stringify/blob/master/.github/workflows/CI-CD.yaml)
+[![Cross-Platform Compatibility](https://jstools.dev/img/badges/os-badges.svg)](https://github.com/JS-DevTools/humanize-anything/blob/master/.github/workflows/CI-CD.yaml)
+[![Build Status](https://github.com/JS-DevTools/humanize-anything/workflows/CI-CD/badge.svg)](https://github.com/JS-DevTools/humanize-anything/blob/master/.github/workflows/CI-CD.yaml)
 
-[![Coverage Status](https://coveralls.io/repos/github/CodeEngineOrg/code-engine-stringify/badge.svg?branch=master)](https://coveralls.io/github/CodeEngineOrg/code-engine-stringify)
-[![Dependencies](https://david-dm.org/CodeEngineOrg/code-engine-stringify.svg)](https://david-dm.org/CodeEngineOrg/code-engine-stringify)
+[![Coverage Status](https://coveralls.io/repos/github/JS-DevTools/humanize-anything/badge.svg?branch=master)](https://coveralls.io/github/JS-DevTools/humanize-anything)
+[![Dependencies](https://david-dm.org/JS-DevTools/humanize-anything.svg)](https://david-dm.org/JS-DevTools/humanize-anything)
 
-[![npm](https://img.shields.io/npm/v/@code-engine/stringify.svg)](https://www.npmjs.com/package/@code-engine/stringify)
-[![License](https://img.shields.io/npm/l/@code-engine/stringify.svg)](LICENSE)
-[![Buy us a tree](https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-lightgreen)](https://plant.treeware.earth/CodeEngineOrg/code-engine-stringify)
+[![npm](https://img.shields.io/npm/v/@jsdevtools/humanize-anything.svg)](https://www.npmjs.com/package/@jsdevtools/humanize-anything)
+[![License](https://img.shields.io/npm/l/@jsdevtools/humanize-anything.svg)](LICENSE)
+[![Buy us a tree](https://img.shields.io/badge/Treeware-%F0%9F%8C%B3-lightgreen)](https://plant.treeware.earth/JS-DevTools/humanize-anything)
 
 
 
-This is a utility library that's used inside [CodeEngine](https://engine.codes/) to convert values to strings for error messages and console logs.
+Features
+-----------------------
+- Safely show user input values in messages and logs
 
-> **NOTE:** This is an **internal library** that is only intended to be used by CodeEngine. Using it outside of CodeEngine is discouraged.
+- Differentiates between `null`, `undefined`, and `NaN`
+
+- Includes the contents of small objects and arrays
+
+- Returns names of functions and classes — even async functions, generators, etc.
+
+- Keeps humanized value within your specified length limit
+
+
+
+Installation
+--------------------------
+You can install Humanize Anything via [npm](https://docs.npmjs.com/about-npm/).
+
+```bash
+npm install @jsdevtools/humanize-anything
+```
 
 
 
 Usage
 -------------------------------
 
-### `stringify(value, [options])`
-Returns a short, user-friendly string that represents the given value. It will try to stringify the value, if it's short enough; otherwise, it will stringify the type name.
+### `humanize(value, [options])`
+Convert any value to a short, human-readable string. It will try to humanize the actual value, if it's short enough; otherwise, it will humanize the type name.
 
-- **value** - The value to stringify
+- **value** - The value to humanize
 - **options** - Optional [options object](#options)
 
 ```javascript
-import stringify from "@code-engine/stringify";
+import humanize from "@jsdevtools/humanize-anything";
 
-stringify(123);                       // '123'
-stringify(NaN);                       // 'NaN'
-stringify(null);                      // 'null'
-stringify("Hello");                   // '"Hello"'  (with quotes)
-stringify(/^regex$/);                 // '/^regex$/'
-stringify({ x: 1, y: 2 });            // '{x,y}'
-stringify([1, 2, 3, 4]);              // '[1,2,3,4]'
-stringify(new RangeError());          // 'RangeError'
+humanize(123);                       // '123'
+humanize(NaN);                       // 'NaN'
+humanize(null);                      // 'null'
+humanize("Hello");                   // '"Hello"'  (with quotes)
+humanize(/^regex$/);                 // '/^regex$/'
+humanize({ x: 1, y: 2 });            // '{x,y}'
+humanize([1, 2, 3, 4]);              // '[1,2,3,4]'
+humanize(new RangeError());          // 'RangeError'
 ```
 
-### `stringify.values(values, [options])`
+### `humanize.values(values, [options])`
 Returns a list of values as an [oxford-comma](https://en.wikipedia.org/wiki/Serial_comma) separated string. Can be configured to use "and", "or", or a custom conjuction.
 
-- **values** - An array of values to stringify
+- **values** - An array of values to humanize
 - **options** - Optional [options object](#options)
 
 ```javascript
-import stringify from "@code-engine/stringify";
+import humanize from "@jsdevtools/humanize-anything";
 
-stringify.values([1, 2, 3, 4, 5]);          // '1, 2, 3, 4, and 5'
-stringify.values([NaN, null, undefined]);   // 'NaN, null, and undefined'
-stringify.values([true, false]);            // 'true and false'
-stringify.values(["Fred", "Wilma"]);        // '"Fred" and "Wilma"'  (with quotes)
+humanize.values([1, 2, 3, 4, 5]);          // '1, 2, 3, 4, and 5'
+humanize.values([NaN, null, undefined]);   // 'NaN, null, and undefined'
+humanize.values([true, false]);            // 'true and false'
+humanize.values(["Fred", "Wilma"]);        // '"Fred" and "Wilma"'  (with quotes)
 ```
 
-### `stringify.list(strings, [options])`
-This is similar to `stringify.values()` above, but expects the values to **already be strings**. It doesn't do any stringify logic. It just concatenates the strings into an [oxford-comma](https://en.wikipedia.org/wiki/Serial_comma) separated list
+### `humanize.list(strings, [options])`
+This is similar to `humanize.values()` above, but expects the values to **already be strings**. It doesn't do any humanization logic. It just concatenates the strings into an [oxford-comma](https://en.wikipedia.org/wiki/Serial_comma) separated list
 
 - **strings** - An array of strings to be joined into a list
 - **options** - Optional [options object](#options)
 
 ```javascript
-import stringify from "@code-engine/stringify";
+import humanize from "@jsdevtools/humanize-anything";
 
-stringify.list(["Fred", "Wilma"]);          // 'Fred and Wilma'
-stringify.list(["one", "two", "three"]);    // 'one, two, and three'
+humanize.list(["Fred", "Wilma"]);          // 'Fred and Wilma'
+humanize.list(["one", "two", "three"]);    // 'one, two, and three'
 ```
 
 
-### `stringify.type(value)`
+### `humanize.type(value)`
 Returns the type name of the given value. This may be a primitive type or a class name.
 
 ```javascript
-import stringify from "@code-engine/stringify";
+import humanize from "@jsdevtools/humanize-anything";
 
-stringify.type(123);                       // 'number'
-stringify.type(NaN);                       // 'NaN'
-stringify.type(null);                      // 'null'
-stringify.type("Hello");                   // 'string'
-stringify.type(/^regex$/);                 // 'RegExp'
-stringify.type({ x: 1, y: 2 });            // 'Object'
-stringify.type([1, 2, 3, 4]);              // 'Array'
-stringify.type(new RangeError());          // 'RangeError'
+humanize.type(123);                       // 'number'
+humanize.type(NaN);                       // 'NaN'
+humanize.type(null);                      // 'null'
+humanize.type("Hello");                   // 'string'
+humanize.type(/^regex$/);                 // 'RegExp'
+humanize.type({ x: 1, y: 2 });            // 'Object'
+humanize.type([1, 2, 3, 4]);              // 'Array'
+humanize.type(new RangeError());          // 'RangeError'
 ```
 
 
-### `stringify.class(value)`
+### `humanize.class(value)`
 Returns the class name of the given value.
 
 ```javascript
-import stringify from "@code-engine/stringify";
+import humanize from "@jsdevtools/humanize-anything";
 
-stringify.class(123);                       // 'Number'
-stringify.class(NaN);                       // 'Number'
-stringify.class(null);                      // 'Null'
-stringify.class("Hello");                   // 'String'
-stringify.class(/^regex$/);                 // 'RegExp'
-stringify.class({ x: 1, y: 2 });            // 'Object'
-stringify.class([1, 2, 3, 4]);              // 'Array'
-stringify.class(new RangeError());          // 'RangeError'
+humanize.class(123);                       // 'Number'
+humanize.class(NaN);                       // 'Number'
+humanize.class(null);                      // 'Null'
+humanize.class("Hello");                   // 'String'
+humanize.class(/^regex$/);                 // 'RegExp'
+humanize.class({ x: 1, y: 2 });            // 'Object'
+humanize.class([1, 2, 3, 4]);              // 'Array'
+humanize.class(new RangeError());          // 'RangeError'
 ```
 
 
-### `stringify.function(fn)`
+### `humanize.function(fn)`
 Returns the name of the given function. This works with any type of function, including async, generators, classes, etc. If the function doesn't have a name, then an empty string is returned.
 
 ```javascript
-import stringify from "@code-engine/stringify";
+import humanize from "@jsdevtools/humanize-anything";
 
-stringify.function(function myFunction() {});                 // 'myFunction'
-stringify.function(async function myAsyncFunction() {});      // 'myAsyncFunction'
-stringify.function(function* myGenerator() {});               // 'myGenerator'
-stringify.function(async function* myAsyncGenerator() {});    // 'myAsyncGenerator'
-stringify.function(() => true);                               // ''
-stringify.function(async () => true);                         // ''
-stringify.function(class Foo {});                             // 'Foo'
-stringify.function(Object);                                   // 'Object'
-stringify.function(Object.toString);                          // 'toString'
+humanize.function(function myFunction() {});                 // 'myFunction'
+humanize.function(async function myAsyncFunction() {});      // 'myAsyncFunction'
+humanize.function(function* myGenerator() {});               // 'myGenerator'
+humanize.function(async function* myAsyncGenerator() {});    // 'myAsyncGenerator'
+humanize.function(() => true);                               // ''
+humanize.function(async () => true);                         // ''
+humanize.function(class Foo {});                             // 'Foo'
+humanize.function(Object);                                   // 'Object'
+humanize.function(Object.toString);                          // 'toString'
 ```
 
 
 
 Options
 --------------------------
-The `stringify()`, `stringify.values()`, and `stringify.list()` functions accept an optional options object. The object can have any of these properties:
+The `humanize()`, `humanize.values()`, and `humanize.list()` functions accept an optional options object. The object can have any of these properties:
 
 |Option            |Type                 |Default     |Description
 |:-----------------|:--------------------|:-----------|:-----------------------------------------
 |`maxLength`       |`number`             |25          |The maximum length of a stringified value before its type is used instead.
 |`capitalize`      |`boolean`            |false       |Indicates whether the value string should be capitalized if applicable (e.g. "Number" instead of "number").
 |`article`         |`boolean`            |false       |Indicates whether the value string should be prefixed with an article if applicable (e.g. "an object" instead of "object").
-|`conjunction`     |`string`             |"and"       |The string used to join a list of values when calling `stringify.values()` or `stringify.list()`. This is usually either "and" or "or".
+|`conjunction`     |`string`             |"and"       |The string used to join a list of values when calling `humanize.values()` or `humanize.list()`. This is usually either "and" or "or".
 
 
 
 Contributing
 --------------------------
-Contributions, enhancements, and bug-fixes are welcome!  [File an issue](https://github.com/CodeEngineOrg/code-engine-stringify/issues) on GitHub and [submit a pull request](https://github.com/CodeEngineOrg/code-engine-stringify/pulls).
+Contributions, enhancements, and bug-fixes are welcome!  [File an issue](https://github.com/JS-DevTools/humanize-anything/issues) on GitHub and [submit a pull request](https://github.com/JS-DevTools/humanize-anything/pulls).
 
 #### Building
 To build the project locally on your computer:
 
 1. __Clone this repo__<br>
-`git clone https://github.com/CodeEngineOrg/code-engine-stringify.git`
+`git clone https://github.com/JS-DevTools/humanize-anything.git`
 
 2. __Install dependencies__<br>
 `npm install`
@@ -159,9 +178,9 @@ To build the project locally on your computer:
 
 License
 --------------------------
-@code-engine/stringify is 100% free and open-source, under the [MIT license](LICENSE). Use it however you want.
+Humanize Anything is 100% free and open-source, under the [MIT license](LICENSE). Use it however you want.
 
-This package is [Treeware](http://treeware.earth). If you use it in production, then we ask that you [**buy the world a tree**](https://plant.treeware.earth/CodeEngineOrg/code-engine-stringify) to thank us for our work. By contributing to the Treeware forest you’ll be creating employment for local families and restoring wildlife habitats.
+This package is [Treeware](http://treeware.earth). If you use it in production, then we ask that you [**buy the world a tree**](https://plant.treeware.earth/JS-DevTools/humanize-anything) to thank us for our work. By contributing to the Treeware forest you’ll be creating employment for local families and restoring wildlife habitats.
 
 
 
@@ -169,6 +188,6 @@ Big Thanks To
 --------------------------
 Thanks to these awesome companies for their support of Open Source developers ❤
 
-[![Travis CI](https://engine.codes/img/badges/travis-ci.svg)](https://travis-ci.com)
-[![SauceLabs](https://engine.codes/img/badges/sauce-labs.svg)](https://saucelabs.com)
-[![Coveralls](https://engine.codes/img/badges/coveralls.svg)](https://coveralls.io)
+[![Travis CI](https://jstools.dev/img/badges/travis-ci.svg)](https://travis-ci.com)
+[![SauceLabs](https://jstools.dev/img/badges/sauce-labs.svg)](https://saucelabs.com)
+[![Coveralls](https://jstools.dev/img/badges/coveralls.svg)](https://coveralls.io)

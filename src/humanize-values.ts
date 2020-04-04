@@ -1,5 +1,5 @@
-import { StringifyOptions } from "./options";
-import { stringifyValue } from "./stringify-value";
+import { humanizeValue } from "./humanize-value";
+import { HumanizeOptions } from "./options";
 
 /**
  * Returns a list of values as a comma separated string
@@ -7,9 +7,9 @@ import { stringifyValue } from "./stringify-value";
  * @example
  * ["one", true, 3, { four: 4 }]    =>    '"one", true, 3, and {four}'
  */
-export function stringifyValues(values: unknown[], options: StringifyOptions = {}): string {
-  let stringValues = values.map((value) => stringifyValue(value, options));
-  return stringifyList(stringValues, options);
+export function humanizeValues(values: unknown[], options: HumanizeOptions = {}): string {
+  let stringValues = values.map((value) => humanizeValue(value, options));
+  return humanizeList(stringValues, options);
 }
 
 /**
@@ -18,7 +18,7 @@ export function stringifyValues(values: unknown[], options: StringifyOptions = {
  * @example
  * ["one", "two", "three", "four"]   =>   "one, two, three, and four"
  */
-export function stringifyList(values: string[], options: StringifyOptions = {}): string {
+export function humanizeList(values: string[], options: HumanizeOptions = {}): string {
   let lastValue = "", oxfordComma = "";
 
   if (values.length > 1) {

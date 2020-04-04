@@ -1,22 +1,26 @@
 {
-  "name": "@code-engine/stringify",
-  "version": "1.0.2",
-  "description": "Converts values to user-friendly strings for error messages and logs",
+  "name": "@jsdevtools/humanize-anything",
+  "version": "0.0.1",
+  "description": "Convert any value to a short, human-readable string",
   "keywords": [
-    "code-engine",
-    "stringify",
     "humanize",
-    "format"
+    "humanizer",
+    "stringify",
+    "stringifier",
+    "format",
+    "formatter",
+    "tostring",
+    "printf"
   ],
   "author": {
     "name": "James Messinger",
     "url": "https://jamesmessinger.com"
   },
   "license": "MIT",
-  "homepage": "https://engine.codes",
+  "homepage": "https://jstools.dev/humanize-anything",
   "repository": {
     "type": "git",
-    "url": "https://github.com/CodeEngineOrg/code-engine-stringify.git"
+    "url": "https://github.com/JS-DevTools/humanize-anything.git"
   },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -37,9 +41,8 @@
     "release": "npm run upgrade && npm run clean && npm run build && npm test && npm run bump"
   },
   "engines": {
-    "node": ">=12.12"
+    "node": ">=10"
   },
-  "engineStrict": true,
   "devDependencies": {
     "@jsdevtools/eslint-config-modular": "^8.0.0",
     "@jsdevtools/tslint-modular": "^2.0.2",

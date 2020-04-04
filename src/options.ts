@@ -1,7 +1,7 @@
 /**
- * Stringify formatting options.
+ * Humanize Anything formatting options.
  */
-export interface StringifyOptions {
+export interface HumanizeOptions {
   /**
    * The maximum length of a stringified value before its type is used instead.
    *

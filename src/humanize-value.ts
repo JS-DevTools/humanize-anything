@@ -1,12 +1,12 @@
-import { StringifyOptions } from "./options";
-import { stringifyType } from "./stringify-type";
+import { humanizeType } from "./humanize-type";
+import { HumanizeOptions } from "./options";
 
 const vowels = ["a", "e", "i", "o", "u"];
 
 /**
- * Returns a short, user-friendly string that represents the given value.
+ * Convert any value to a short, human-readable string
  */
-export function stringifyValue(value: unknown, options: StringifyOptions = {}): string {
+export function humanizeValue(value: unknown, options: HumanizeOptions = {}): string {
   let type = typeof value;
   let str = String(value);
   let canHavArticle = true;
@@ -39,7 +39,7 @@ export function stringifyValue(value: unknown, options: StringifyOptions = {}): 
       canHavArticle = false;
     }
     else {
-      str = stringifyType(value);
+      str = humanizeType(value);
 
       if (str === "Object") {
         let keys = Object.keys(value as object);

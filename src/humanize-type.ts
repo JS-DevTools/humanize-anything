@@ -1,7 +1,7 @@
 /**
  * Returns the type name of the given value.
  */
-export function stringifyType(value: unknown): string {
+export function humanizeType(value: unknown): string {
   let type = typeof value;
 
   if (value === null) {
@@ -11,7 +11,7 @@ export function stringifyType(value: unknown): string {
     return "NaN";
   }
   else if (type === "object") {
-    return stringifyClass(value as object);
+    return humanizeClass(value as object);
   }
 
   return type;
@@ -20,11 +20,11 @@ export function stringifyType(value: unknown): string {
 /**
  * Returns the class name of the given value.
  */
-export function stringifyClass(obj: object): string {
+export function humanizeClass(obj: object): string {
   let name = Object.prototype.toString.call(obj).slice(8, -1);
 
   if ((name === "Object" || name === "Error") && obj.constructor) {
-    return stringifyFunction(obj.constructor);
+    return humanizeFunction(obj.constructor);
   }
 
   return name;
@@ -33,7 +33,7 @@ export function stringifyClass(obj: object): string {
 /**
  * Returns the name of the given function.
  */
-export function stringifyFunction(func: Function): string {  // tslint:disable-line: ban-types
+export function humanizeFunction(func: Function): string {  // tslint:disable-line: ban-types
   if (func.name) {
     return func.name;
   }
