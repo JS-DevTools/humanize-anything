@@ -20,10 +20,24 @@ export function humanizeValues(values: unknown[], options: HumanizeOptions = {})
  */
 export function humanizeList(values: string[], options: HumanizeOptions = {}): string {
   let lastValue = "", oxfordComma = "";
+  values = values.slice();
 
   if (values.length > 1) {
     let conjunction = options.conjunction || "and";
     lastValue = ` ${conjunction} ${values.pop()!}`;
+  }
+
+  if (options.maxLength) {
+    let length = lastValue.length;
+    for (let i = 0; i < values.length; i++) {
+      length += values[i].length + 2;
+
+      if (length > options.maxLength + 1) {
+        values = values.slice(0, i);
+        values.push("...");
+        break;
+      }
+    }
   }
 
   if (values.length > 1) {

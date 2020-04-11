@@ -107,4 +107,14 @@ describe("humanize.values()", () => {
       .to.equal("{}, {foo}, {foo,bar}, /^regex$/, Date, or function");
   });
 
+  it.only("should limit the number of items to fit within the maxLength", () => {
+    let longList = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+
+    expect(humanize.list(longList)).to.equal("one, two, three, four, five, six, seven, eight, nine, and ten");
+    expect(humanize.values(longList)).to.equal('"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", and "ten"');
+
+    expect(humanize.list(longList, { maxLength: 30 })).to.equal("one, two, three, four, and ten");
+    expect(humanize.values(longList, { maxLength: 30 })).to.equal('"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", and "ten"');
+  });
+
 });
