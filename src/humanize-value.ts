@@ -1,4 +1,5 @@
 import { humanizeType } from "./humanize-type";
+import { humanizeList } from "./humanize-values";
 import { HumanizeOptions } from "./options";
 
 const vowels = ["a", "e", "i", "o", "u"];
@@ -49,13 +50,8 @@ export function humanizeValue(value: unknown, options: HumanizeOptions = {}): st
           canHavArticle = false;
         }
         else {
-          str = `{${keys}}`;
-          if (str.length <= maxLength) {
-            canHavArticle = false;
-          }
-          else {
-            str = "Object";
-          }
+          str = `{${humanizeList(keys, { maxLength, conjunction: false })}}`;
+          canHavArticle = false;
         }
       }
     }

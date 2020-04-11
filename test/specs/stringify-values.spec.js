@@ -65,7 +65,7 @@ describe("humanize.values()", () => {
     expect(humanize.values([0, 1, 2])).to.equal("0, 1, and 2");
     expect(humanize.values([true, false, "maybe"])).to.equal('true, false, and "maybe"');
     expect(humanize.values(["Fred", "Wilma", "Pebbles"])).to.equal('"Fred", "Wilma", and "Pebbles"');
-    expect(humanize.values([{}, { foo: 1 }, { foo: 1, bar: 2 }])).to.equal("{}, {foo}, and {foo,bar}");
+    expect(humanize.values([{}, { foo: 1 }, { foo: 1, bar: 2 }])).to.equal("{}, {foo}, and {foo, bar}");
     expect(humanize.values([/^regex$/, new Date(), Object.prototype.valueOf])).to.equal("/^regex$/, Date, and function");
   });
 
@@ -74,7 +74,7 @@ describe("humanize.values()", () => {
     expect(humanize.values([0, 1, 2], { conjunction: "or" })).to.equal("0, 1, or 2");
     expect(humanize.values([true, false, "maybe"], { conjunction: "or" })).to.equal('true, false, or "maybe"');
     expect(humanize.values(["Fred", "Wilma", "Pebbles"], { conjunction: "or" })).to.equal('"Fred", "Wilma", or "Pebbles"');
-    expect(humanize.values([{}, { foo: 1 }, { foo: 1, bar: 2 }], { conjunction: "or" })).to.equal("{}, {foo}, or {foo,bar}");
+    expect(humanize.values([{}, { foo: 1 }, { foo: 1, bar: 2 }], { conjunction: "or" })).to.equal("{}, {foo}, or {foo, bar}");
     expect(humanize.values([/^regex$/, new Date(), Object.prototype.valueOf], { conjunction: "or" })).to.equal("/^regex$/, Date, or function");
   });
 
@@ -92,7 +92,7 @@ describe("humanize.values()", () => {
       .to.equal('"Fred", "Wilma", "Pebbles", "Barney", "Betty", and "Bam Bam"');
 
     expect(humanize.values([{}, { foo: 1 }, { foo: 1, bar: 2 }, /^regex$/, new Date(), Object.prototype.valueOf]))
-      .to.equal("{}, {foo}, {foo,bar}, /^regex$/, Date, and function");
+      .to.equal("{}, {foo}, {foo, bar}, /^regex$/, Date, and function");
   });
 
   it("should use the conjunction when the list has many values", () => {
@@ -109,7 +109,7 @@ describe("humanize.values()", () => {
       .to.equal('"Fred", "Wilma", "Pebbles", "Barney", "Betty", or "Bam Bam"');
 
     expect(humanize.values([{}, { foo: 1 }, { foo: 1, bar: 2 }, /^regex$/, new Date(), Object.prototype.valueOf], { conjunction: "or" }))
-      .to.equal("{}, {foo}, {foo,bar}, /^regex$/, Date, or function");
+      .to.equal("{}, {foo}, {foo, bar}, /^regex$/, Date, or function");
   });
 
   it("should limit the number of items to fit within the maxLength", () => {

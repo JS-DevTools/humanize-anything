@@ -191,17 +191,16 @@ describe("humanize()", () => {
       expect(humanize(new RegExp("^xyz$"))).to.equal("/^xyz$/");
       expect(humanize(Array.of(1))).to.equal("[1]");
       expect(humanize(new Array(1, 2, 3, 4))).to.equal("[1,2,3,4]");
+      expect(humanize(["a", "b", "c", "d"])).to.equal("[a,b,c,d]");
       expect(humanize(new Object({}))).to.equal("{}");
       expect(humanize({})).to.equal("{}");
-      expect(humanize({ x: 1, y: 2 })).to.equal("{x,y}");
+      expect(humanize({ x: 1, y: 2 })).to.equal("{x, y}");
       expect(humanize(new Object({ toString: () => "obj" }))).to.equal("obj");
     });
 
     it("should output built-in objects as types when too long", () => {
       expect(humanize(new Date("2005-05-05T05:05:05.005Z"))).to.equal("Date");
       expect(humanize(new RegExp("^(really really long regexp)$"))).to.equal("RegExp");
-      expect(humanize(new Object({ reallyLongKeyName1: 1, reallyLongKeyName2: 2 }))).to.equal("Object");
-      expect(humanize({ reallyLongKeyName1: 1, reallyLongKeyName2: 2 })).to.equal("Object");
       expect(humanize(new Array())).to.equal("Array");
       expect(humanize([])).to.equal("Array");
       expect(humanize([new Date(), new Date()])).to.equal("Array");
@@ -213,8 +212,6 @@ describe("humanize()", () => {
       expect(humanize(new Number(123456789012345), { maxLength: 5, capitalize: true })).to.equal("Number");
       expect(humanize(new Date("2005-05-05T05:05:05.005Z"), { capitalize: true })).to.equal("Date");
       expect(humanize(new RegExp("^(really really long regexp)$"), { capitalize: true })).to.equal("RegExp");
-      expect(humanize(new Object({ reallyLongKeyName1: 1, reallyLongKeyName2: 2 }), { capitalize: true })).to.equal("Object");
-      expect(humanize({ reallyLongKeyName1: 1, reallyLongKeyName2: 2 }, { capitalize: true })).to.equal("Object");
       expect(humanize(new Array(0), { capitalize: true })).to.equal("Array");
       expect(humanize([], { capitalize: true })).to.equal("Array");
       expect(humanize([new Date(), new Date()])).to.equal("Array");
@@ -228,16 +225,24 @@ describe("humanize()", () => {
       expect(humanize(new String("hello"), { capitalize: true })).to.equal("Hello");
       expect(humanize(new RegExp("^xyz$"), { capitalize: true })).to.equal("/^xyz$/");
       expect(humanize({})).to.equal("{}");
-      expect(humanize({ x: 1, y: 2 })).to.equal("{x,y}");
+      expect(humanize({ x: 1, y: 2 })).to.equal("{x, y}");
       expect(humanize(new Object({ toString: () => "obj" }))).to.equal("obj");
+    });
+
+    it("should output list of object keys", () => {
+      expect(humanize({})).to.equal("{}");
+      expect(humanize({ x: 1, y: 2 })).to.equal("{x, y}");
+      expect(humanize({ foo: 1, bar: 2, biz: 3, baz: 4 })).to.equal("{foo, bar, biz, baz}");
+      expect(humanize({ firstName: "Fred", lastName: "Flintstone" })).to.equal("{firstName, lastName}");
+      expect(humanize({ firstName: "Fred", middleName: "Terrance", lastName: "Flintstone" })).to.equal("{firstName, ..., lastName}");
+      expect(humanize({ reallyLongKeyName1: 1, reallyLongKeyName2: 2 })).to.equal("{reallyLongKeyName1, reallyLongKeyName2}");
+      expect(humanize({ reallyLongKeyName1: 1, reallyLongKeyName2: 2, reallyLongKeyName3: 3 })).to.equal("{reallyLongKeyName1, ..., reallyLongKeyName3}");
     });
 
     it("should prefix object types with articles", () => {
       expect(humanize(new Number(123456789012345), { maxLength: 5, article: true })).to.equal("a Number");
       expect(humanize(new Date("2005-05-05T05:05:05.005Z"), { article: true })).to.equal("a Date");
       expect(humanize(new RegExp("^(really really long regexp)$"), { article: true })).to.equal("a RegExp");
-      expect(humanize(new Object({ reallyLongKeyName1: 1, reallyLongKeyName2: 2 }), { article: true })).to.equal("an Object");
-      expect(humanize({ reallyLongKeyName1: 1, reallyLongKeyName2: 2 }, { article: true })).to.equal("an Object");
       expect(humanize(new Array(0), { article: true })).to.equal("an Array");
       expect(humanize([], { article: true })).to.equal("an Array");
       expect(humanize([new Date(), new Date()], { article: true })).to.equal("an Array");
@@ -247,8 +252,6 @@ describe("humanize()", () => {
       expect(humanize(new Number(123456789012345), { maxLength: 5, capitalize: true, article: true })).to.equal("A Number");
       expect(humanize(new Date("2005-05-05T05:05:05.005Z"), { capitalize: true, article: true })).to.equal("A Date");
       expect(humanize(new RegExp("^(really really long regexp)$"), { capitalize: true, article: true })).to.equal("A RegExp");
-      expect(humanize(new Object({ reallyLongKeyName1: 1, reallyLongKeyName2: 2 }), { capitalize: true, article: true })).to.equal("An Object");
-      expect(humanize({ reallyLongKeyName1: 1, reallyLongKeyName2: 2 }, { capitalize: true, article: true })).to.equal("An Object");
       expect(humanize(new Array(0), { capitalize: true, article: true })).to.equal("An Array");
       expect(humanize([], { capitalize: true, article: true })).to.equal("An Array");
       expect(humanize([new Date(), new Date()], { capitalize: true, article: true })).to.equal("An Array");
@@ -264,7 +267,7 @@ describe("humanize()", () => {
       expect(humanize(Array.of(1), { article: true })).to.equal("[1]");
       expect(humanize(new Array(1, 2, 3, 4), { article: true })).to.equal("[1,2,3,4]");
       expect(humanize({}, { article: true })).to.equal("{}");
-      expect(humanize({ x: 1, y: 2 }, { article: true })).to.equal("{x,y}");
+      expect(humanize({ x: 1, y: 2 }, { article: true })).to.equal("{x, y}");
       expect(humanize(new Object({ toString: () => "obj" }, { article: true }))).to.equal("obj");
 
       expect(humanize(new Boolean(true), { capitalize: true, article: true })).to.equal("True");
@@ -274,7 +277,7 @@ describe("humanize()", () => {
       expect(humanize(Array.of(1), { capitalize: true, article: true })).to.equal("[1]");
       expect(humanize(new Array(1, 2, 3, 4), { capitalize: true, article: true })).to.equal("[1,2,3,4]");
       expect(humanize({}, { capitalize: true, article: true })).to.equal("{}");
-      expect(humanize({ x: 1, y: 2 }, { capitalize: true, article: true })).to.equal("{x,y}");
+      expect(humanize({ x: 1, y: 2 }, { capitalize: true, article: true })).to.equal("{x, y}");
       expect(humanize(new Object({ toString: () => "obj" }, { capitalize: true, article: true }))).to.equal("obj");
     });
   });
