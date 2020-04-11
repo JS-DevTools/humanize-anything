@@ -157,7 +157,7 @@ The `humanize()`, `humanize.values()`, and `humanize.list()` functions accept an
 
 Contributing
 --------------------------
-Contributions, enhancements, and bug-fixes are welcome!  [File an issue](https://github.com/JS-DevTools/humanize-anything/issues) on GitHub and [submit a pull request](https://github.com/JS-DevTools/humanize-anything/pulls).
+Contributions, enhancements, and bug-fixes are welcome!  [Open an issue](https://github.com/JS-DevTools/humanize-anything/issues) on GitHub and [submit a pull request](https://github.com/JS-DevTools/humanize-anything/pulls).
 
 #### Building
 To build the project locally on your computer:
