@@ -45,11 +45,11 @@
   },
   "devDependencies": {
     "@jsdevtools/eslint-config-modular": "^8.0.0",
-    "@jsdevtools/tslint-modular": "^2.0.2",
+    "@jsdevtools/tslint-modular": "^2.0.5",
     "@jsdevtools/version-bump-prompt": "^6.0.2",
     "@types/chai": "^4.2.6",
     "@types/mocha": "^7.0.2",
-    "@types/node": "^13.9.0",
+    "@types/node": "^13.11.1",
     "chai": "^4.2.0",
     "eslint": "^6.7.2",
     "mocha": "^7.1.0",
