@@ -55,7 +55,7 @@ humanize(NaN);                       // 'NaN'
 humanize(null);                      // 'null'
 humanize("Hello");                   // '"Hello"'  (with quotes)
 humanize(/^regex$/);                 // '/^regex$/'
-humanize({ x: 1, y: 2 });            // '{x,y}'
+humanize({ x: 1, y: 2 });            // '{x, y}'
 humanize([1, 2, 3, 4]);              // '[1,2,3,4]'
 humanize(new RangeError());          // 'RangeError'
 ```
@@ -148,10 +148,10 @@ The `humanize()`, `humanize.values()`, and `humanize.list()` functions accept an
 
 |Option            |Type                 |Default     |Description
 |:-----------------|:--------------------|:-----------|:-----------------------------------------
-|`maxLength`       |`number`             |25          |The maximum length of a stringified value before its type is used instead.
+|`maxLength`       |`number`             |25          |The maximum length of a humanized value before it is shortened or truncated
 |`capitalize`      |`boolean`            |false       |Indicates whether the value string should be capitalized if applicable (e.g. "Number" instead of "number").
 |`article`         |`boolean`            |false       |Indicates whether the value string should be prefixed with an article if applicable (e.g. "an object" instead of "object").
-|`conjunction`     |`string`             |"and"       |The string used to join a list of values when calling `humanize.values()` or `humanize.list()`. This is usually either "and" or "or".
+|`conjunction`     |`string` or `false`  |"and"       |The string used to join a list of values when calling `humanize.values()` or `humanize.list()`. This is usually either "and" or "or". Setting it to `false` will omit the conjunction.
 
 
 

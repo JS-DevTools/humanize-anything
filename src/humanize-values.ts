@@ -19,30 +19,39 @@ export function humanizeValues(values: unknown[], options: HumanizeOptions = {})
  * ["one", "two", "three", "four"]   =>   "one, two, three, and four"
  */
 export function humanizeList(values: string[], options: HumanizeOptions = {}): string {
-  let lastValue = "", oxfordComma = "";
-  values = values.slice();
-
-  if (values.length > 1) {
-    let conjunction = options.conjunction || "and";
-    lastValue = ` ${conjunction} ${values.pop()!}`;
+  if (values.length === 0) {
+    return "";
   }
 
-  if (options.maxLength) {
-    let length = lastValue.length;
+  if (values.length === 1) {
+    return values[0];
+  }
+
+  values = values.slice();
+  let firstValue = String(values.shift()!);
+  let lastValue = String(values.pop()!);
+  let maxLength = options.maxLength;
+  let conjunction = options.conjunction;
+
+  if (maxLength) {
+    let length = firstValue.length + lastValue.length + 2;
+
     for (let i = 0; i < values.length; i++) {
       length += values[i].length + 2;
 
-      if (length > options.maxLength + 1) {
-        values = values.slice(0, i);
-        values.push("...");
-        break;
+      if (length >= maxLength) {
+        // The list is too long, so remove some middle items
+        values = [firstValue].concat(values.slice(0, i), "...", lastValue);
+        return values.join(", ");
       }
     }
   }
 
-  if (values.length > 1) {
-    oxfordComma = ",";
+  if (conjunction !== false) {
+    lastValue = `${conjunction || "and"} ${lastValue}`;
   }
 
-  return values.join(", ") + oxfordComma + lastValue;
+  let oxfordComma = (values.length > 0 || conjunction === false) ? "," : "";
+
+  return [firstValue].concat(values).join(", ") + oxfordComma + " " + lastValue;
 }

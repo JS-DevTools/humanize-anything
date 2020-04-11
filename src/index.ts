@@ -30,7 +30,7 @@ export interface Humanize {
   function(func: Function): string;  // tslint:disable-line: ban-types
 
   /**
-   * Returns a comma separated list of stringified values.
+   * Returns a comma separated list of humanized values.
    *
    * @example
    * ["one", true, 3, { four: 4 }]    =>    '"one", true, 3, and {four}'

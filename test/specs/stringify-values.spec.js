@@ -5,6 +5,11 @@ const { expect } = require("chai");
 
 describe("humanize.values()", () => {
 
+  it("should return an empty string for an empty list", () => {
+    expect(humanize.values([])).to.equal("");
+    expect(humanize.list([])).to.equal("");
+  });
+
   it("should join a list that only contains one value", () => {
     expect(humanize.values([undefined])).to.equal("undefined");
     expect(humanize.values([null])).to.equal("null");
@@ -107,14 +112,21 @@ describe("humanize.values()", () => {
       .to.equal("{}, {foo}, {foo,bar}, /^regex$/, Date, or function");
   });
 
-  it.only("should limit the number of items to fit within the maxLength", () => {
-    let longList = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+  it("should limit the number of items to fit within the maxLength", () => {
+    let numbers = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"];
+    let people = ["Fred Flintstone", "Wilma Flintstone", "Pebbles Flintstone", "Barney Rubble", "Betty Rubble", "Bam Bam Rubble"];
 
-    expect(humanize.list(longList)).to.equal("one, two, three, four, five, six, seven, eight, nine, and ten");
-    expect(humanize.values(longList)).to.equal('"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", and "ten"');
+    expect(humanize.list(numbers)).to.equal("one, two, three, four, five, six, seven, eight, nine, and ten");
+    expect(humanize.values(numbers)).to.equal('"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", and "ten"');
 
-    expect(humanize.list(longList, { maxLength: 30 })).to.equal("one, two, three, four, and ten");
-    expect(humanize.values(longList, { maxLength: 30 })).to.equal('"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", and "ten"');
+    expect(humanize.list(people)).to.equal("Fred Flintstone, Wilma Flintstone, Pebbles Flintstone, Barney Rubble, Betty Rubble, and Bam Bam Rubble");
+    expect(humanize.values(people)).to.equal('"Fred Flintstone", "Wilma Flintstone", "Pebbles Flintstone", "Barney Rubble", "Betty Rubble", and "Bam Bam Rubble"');
+
+    expect(humanize.list(numbers, { maxLength: 30 })).to.equal("one, two, three, four, ..., ten");
+    expect(humanize.values(numbers, { maxLength: 30 })).to.equal('"one", "two", "three", ..., "ten"');
+
+    expect(humanize.list(people, { maxLength: 50 })).to.equal("Fred Flintstone, Wilma Flintstone, ..., Bam Bam Rubble");
+    expect(humanize.values(people, { maxLength: 50 })).to.equal('"Fred Flintstone", ..., "Bam Bam Rubble"');
   });
 
 });

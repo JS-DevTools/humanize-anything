@@ -3,7 +3,7 @@
  */
 export interface HumanizeOptions {
   /**
-   * The maximum length of a stringified value before its type is used instead.
+   * The maximum length of a humanized value before it is shortened or truncated
    *
    * Defaults to `25`.
    */
@@ -31,5 +31,5 @@ export interface HumanizeOptions {
    *
    * Defautls to "and".
    */
-  conjunction?: string;
+  conjunction?: string | false;
 }
