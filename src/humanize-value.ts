@@ -57,7 +57,6 @@ export function humanizeValue(value: unknown, options: HumanizeOptions = {}): st
     }
   }
   else if (str.length > 0 && str.length <= maxLength) {
-    // tslint:disable-next-line: switch-default
     switch (type) {
       case "number":
       case "bigint":

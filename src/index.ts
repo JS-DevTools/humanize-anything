@@ -27,8 +27,7 @@ export interface Humanize {
   /**
    * Returns the name of the given function.
    */
-  function(func: Function): string;  // tslint:disable-line: ban-types
-
+  function(func: Function): string;
   /**
    * Returns a comma separated list of humanized values.
    *
@@ -57,10 +56,10 @@ humanize.values = humanizeValues;
 humanize.list = humanizeList;
 
 // Export `humanize` as the default export
-// tslint:disable: no-default-export
 export default humanize;
 
 // CommonJS default export hack
+/* eslint-env commonjs */
 if (typeof module === "object" && typeof module.exports === "object") {
-  module.exports = Object.assign(module.exports.default, module.exports);  // tslint:disable-line: no-unsafe-any
+  module.exports = Object.assign(module.exports.default, module.exports);
 }

@@ -33,7 +33,7 @@ export function humanizeClass(obj: object): string {
 /**
  * Returns the name of the given function.
  */
-export function humanizeFunction(func: Function): string {  // tslint:disable-line: ban-types
+export function humanizeFunction(func: Function): string {
   if (func.name) {
     return func.name;
   }

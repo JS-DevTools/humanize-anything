@@ -1,5 +1,4 @@
-/* eslint-disable no-new-func, no-new-wrappers, no-new-object, no-array-constructor */
-/* global BigInt */
+/* eslint-disable no-new-func, no-new-wrappers, no-new-object, no-array-constructor, prefer-arrow-callback */
 "use strict";
 
 const { humanize } = require("../../");
