@@ -2,8 +2,8 @@ Humanize Anything
 ======================================
 ### Convert any value to a short, human-readable string
 
-[![Cross-Platform Compatibility](https://jstools.dev/img/badges/os-badges.svg)](https://github.com/JS-DevTools/humanize-anything/blob/master/.github/workflows/CI-CD.yaml)
-[![Build Status](https://github.com/JS-DevTools/humanize-anything/workflows/CI-CD/badge.svg)](https://github.com/JS-DevTools/humanize-anything/blob/master/.github/workflows/CI-CD.yaml)
+[![Cross-Platform Compatibility](https://jstools.dev/img/badges/os-badges.svg)](https://github.com/JS-DevTools/humanize-anything/actions)
+[![Build Status](https://github.com/JS-DevTools/humanize-anything/workflows/CI-CD/badge.svg)](https://github.com/JS-DevTools/humanize-anything/actions)
 
 [![Coverage Status](https://coveralls.io/repos/github/JS-DevTools/humanize-anything/badge.svg?branch=master)](https://coveralls.io/github/JS-DevTools/humanize-anything)
 [![Dependencies](https://david-dm.org/JS-DevTools/humanize-anything.svg)](https://david-dm.org/JS-DevTools/humanize-anything)
